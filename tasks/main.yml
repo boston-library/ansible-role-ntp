@@ -1,0 +1,12 @@
+---
+- name: Install NTP
+#  apt: pkg=ntp={{ ntp_version }} state=present
+  apt: pkg=ntp state=present
+  
+- name: Configure NTP
+  template: src={{ item }} dest=/etc/ntp.conf
+  with_first_found:
+    - "ntp.conf.{{ ansible_distribution_release }}.j2"
+    - "ntp.conf.default.j2"
+  notify:
+    - Restart NTP

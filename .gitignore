@@ -1,0 +1,7 @@
+.vagrant
+
+# Molecule
+.molecule
+*.cache
+*.log
+*__pycache__*
